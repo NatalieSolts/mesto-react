@@ -3,6 +3,8 @@
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
+import PopupWithForm from './PopupWithForm';
+import ImagePopup from './ImagePopup';
 
 function App() {
   return (
@@ -10,18 +12,12 @@ function App() {
       <Header />
       <Main />
       <Footer />
-      
-      {/* Попап редактировать профиль */}
-      <section className="popup popup_type_edit-profile">
-        <div className="popup__container">
-          <button className="popup__button-close button-hover" type="reset" />
-          <h2 className="popup__title">Редактировать профиль</h2>
-          <form
-            action="#"
-            name="popup__form"
-            className="popup__form popup__form_edit-profile"
-            noValidate=""
-          >
+      {/* Попап «Редактировать профиль» */}
+      <PopupWithForm 
+        name="edit-profile"
+        title="Редактировать профиль"
+        children={
+          <>
             <input
               type="text"
               defaultValue=""
@@ -29,8 +25,8 @@ function App() {
               name="name"
               placeholder="Имя"
               required=""
-              minLength={2}
-              maxLength={40}
+              minLength="2"
+              maxLength="40"
               id="name"
             />
             <span className="popup__error name-error" />
@@ -41,28 +37,23 @@ function App() {
               name="job"
               placeholder="Описание деятельности"
               required=""
-              minLength={2}
-              maxLength={200}
+              minLength="2"
+              maxLength="200"
               id="job"
             />
             <span className="popup__error job-error" />
             <button className="popup__button-submit button-hover" type="submit">
               Сохранить
             </button>
-          </form>
-        </div>
-      </section>
-      {/* Попап добавить новое место */}
-      <section className="popup popup_type_add-place">
-        <div className="popup__container">
-          <button className="popup__button-close button-hover" type="reset" />
-          <h2 className="popup__title">Новое место</h2>
-          <form
-            action="#"
-            name="popup__form"
-            className="popup__form popup__form_add-place"
-            noValidate=""
-          >
+          </>
+        } 
+      />
+      {/* Попап добавить «Новое место» */}
+      <PopupWithForm 
+        name="add-place"
+        title="Новое место"
+        children={
+          <>
             <input
               type="text"
               defaultValue=""
@@ -91,49 +82,27 @@ function App() {
             >
               Создать
             </button>
-          </form>
-        </div>
-      </section>
-      {/* Попап увеличить изображение */}
-      <section className="popup popup_type_increase-img">
-        <div className="popup__image-container">
-          <button className="popup__button-close button-hover" type="reset" />
-          <img
-            className="popup__cards-image"
-            src="data:,"
-            alt="Изображение места"
-          />
-          <h2 className="popup__cards-name" />
-        </div>
-      </section>
-      {/* Попап подтверждения удаления карточки */}
-      <section className="popup popup_type_delete-card-confirmation">
-        <div className="popup__container">
-          <button className="popup__button-close button-hover" type="reset" />
-          <h2 className="popup__title">Вы&nbsp;уверены?</h2>
-          <form
-            action="#"
-            name="popup__form"
-            className="popup__form popup__form_delete-card-confirmation"
-            noValidate=""
-          >
+          </>
+        }
+      />     
+      {/* Попап подтверждения удаления карточки «Вы уверены?»*/}
+      <PopupWithForm 
+        name="delete-card-confirmation"
+        title="Вы&nbsp;уверены?"
+        children={
+          <>
             <button className="popup__button-submit button-hover" type="submit">
               Да
             </button>
-          </form>
-        </div>
-      </section>
-      {/* Попап обновления аватарки */}
-      <section className="popup popup_type_update-avatar">
-        <div className="popup__container">
-          <button className="popup__button-close button-hover" type="reset" />
-          <h2 className="popup__title">Обновить аватар</h2>
-          <form
-            action="#"
-            name="popup__form"
-            className="popup__form popup__form_update-avatar"
-            noValidate=""
-          >
+          </>
+        }
+      />     
+      {/* Попап «Обновить аватар» */}
+      <PopupWithForm 
+        name="update-avatar"
+        title="Обновить аватар"
+        children={
+          <>
             <input
               type="url"
               defaultValue=""
@@ -147,10 +116,12 @@ function App() {
             <button className="popup__button-submit button-hover" type="submit">
               Сохранить
             </button>
-          </form>
-        </div>
-      </section>
-    </div>    
+          </>
+        }
+      />
+      {/* Попап увеличить изображение */}
+      <ImagePopup />
+    </div>   
   );
 }
 
