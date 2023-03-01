@@ -1,21 +1,30 @@
-// import logo from './logo.svg';
-// import './App.css';
+import React, { useState } from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
+
 function App() {
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+
   return (
     <div className="page">
       <Header />
-      <Main />
+      <Main
+        onEditProfile={() => setIsEditProfilePopupOpen(true)} 
+        onAddPlace={() => setIsAddPlacePopupOpen(true)}
+        onEditAvatar={() => setIsEditAvatarPopupOpen(true)}
+      />
       <Footer />
       {/* Попап «Редактировать профиль» */}
       <PopupWithForm 
         name="edit-profile"
         title="Редактировать профиль"
+        isOpen={isEditProfilePopupOpen}
         children={
           <>
             <input
@@ -52,6 +61,7 @@ function App() {
       <PopupWithForm 
         name="add-place"
         title="Новое место"
+        isOpen={isAddPlacePopupOpen}
         children={
           <>
             <input
@@ -101,6 +111,7 @@ function App() {
       <PopupWithForm 
         name="update-avatar"
         title="Обновить аватар"
+        isOpen={isEditAvatarPopupOpen}
         children={
           <>
             <input
