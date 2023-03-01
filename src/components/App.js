@@ -11,6 +11,12 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
 
+  function closeAllPopups() {
+    setIsEditAvatarPopupOpen(false)
+    setIsEditProfilePopupOpen(false)
+    setIsAddPlacePopupOpen(false)
+  }
+
   return (
     <div className="page">
       <Header />
@@ -25,6 +31,7 @@ function App() {
         name="edit-profile"
         title="Редактировать профиль"
         isOpen={isEditProfilePopupOpen}
+        onClose={closeAllPopups}
         children={
           <>
             <input
@@ -62,6 +69,7 @@ function App() {
         name="add-place"
         title="Новое место"
         isOpen={isAddPlacePopupOpen}
+        onClose={closeAllPopups}
         children={
           <>
             <input
@@ -99,6 +107,7 @@ function App() {
       <PopupWithForm 
         name="delete-card-confirmation"
         title="Вы&nbsp;уверены?"
+        onClose={closeAllPopups}
         children={
           <>
             <button className="popup__button-submit button-hover" type="submit">
@@ -111,6 +120,7 @@ function App() {
       <PopupWithForm 
         name="update-avatar"
         title="Обновить аватар"
+        onClose={closeAllPopups}
         isOpen={isEditAvatarPopupOpen}
         children={
           <>
