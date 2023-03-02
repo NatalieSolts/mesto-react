@@ -12,22 +12,22 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
 
   function closeAllPopups() {
-    setIsEditAvatarPopupOpen(false)
-    setIsEditProfilePopupOpen(false)
-    setIsAddPlacePopupOpen(false)
+    setIsEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
   }
 
   return (
     <div className="page">
       <Header />
       <Main
-        onEditProfile={() => setIsEditProfilePopupOpen(true)} 
+        onEditProfile={() => setIsEditProfilePopupOpen(true)}
         onAddPlace={() => setIsAddPlacePopupOpen(true)}
         onEditAvatar={() => setIsEditAvatarPopupOpen(true)}
       />
       <Footer />
       {/* Попап «Редактировать профиль» */}
-      <PopupWithForm 
+      <PopupWithForm
         name="edit-profile"
         title="Редактировать профиль"
         isOpen={isEditProfilePopupOpen}
@@ -62,10 +62,10 @@ function App() {
               Сохранить
             </button>
           </>
-        } 
+        }
       />
       {/* Попап добавить «Новое место» */}
-      <PopupWithForm 
+      <PopupWithForm
         name="add-place"
         title="Новое место"
         isOpen={isAddPlacePopupOpen}
@@ -102,9 +102,9 @@ function App() {
             </button>
           </>
         }
-      />     
+      />
       {/* Попап подтверждения удаления карточки «Вы уверены?»*/}
-      <PopupWithForm 
+      <PopupWithForm
         name="delete-card-confirmation"
         title="Вы&nbsp;уверены?"
         onClose={closeAllPopups}
@@ -115,9 +115,9 @@ function App() {
             </button>
           </>
         }
-      />     
+      />
       {/* Попап «Обновить аватар» */}
-      <PopupWithForm 
+      <PopupWithForm
         name="update-avatar"
         title="Обновить аватар"
         onClose={closeAllPopups}
@@ -142,7 +142,7 @@ function App() {
       />
       {/* Попап увеличить изображение */}
       <ImagePopup />
-    </div>   
+    </div>
   );
 }
 
