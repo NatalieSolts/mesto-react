@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import api from '../utils/api';
 import Card from './Card';
 
-function Main( {onEditProfile, onAddPlace, onEditAvatar} ) {
+function Main( {onEditProfile, onAddPlace, onEditAvatar, onCardClick} ) {
   const [userName, setUserName] = useState('');
   const [userDescription, setUserDescription] = useState('');
   const [userAvatar, setUserAvatar] = useState('');
@@ -36,10 +36,11 @@ function Main( {onEditProfile, onAddPlace, onEditAvatar} ) {
         <ul className="cards__list">
           {cards.map((card) => (
             <Card
-             title={card.name}
+              title={card.name}
               likes={card.likes.length}
               link={card.link}
               key={card._id}
+              onCardClick={onCardClick}
             />
           ))}
         </ul>
