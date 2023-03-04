@@ -12,9 +12,9 @@ function ImagePopup( {card, onClose} ) {
       <img
         className="popup__cards-image"
         src={card?.link}
-        alt={card?.title}
+        alt={card?.name}
       />
-      <h2 className="popup__cards-name">{card?.title}</h2>
+      <h2 className="popup__cards-name">{card?.name}</h2>
     </div>
   </section>
   )

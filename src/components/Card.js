@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Card(card) {
+function Card( {card, onCardClick} ) {
   function handleClick() {
-    card.onCardClick(card);
+    onCardClick(card);
   }
 
   return(
@@ -18,13 +18,13 @@ function Card(card) {
         type="button">
       </button>
       <div className="cards__description">
-        <h2 className="cards__name">{card.title}</h2>
+        <h2 className="cards__name">{card.name}</h2>
         <div className="cards__like-group">
           <button
             className="cards__icon-heart button-hover"
             type="button">
           </button>
-          <p className="cards__number-of-likes">{card.likes}</p>
+          <p className="cards__number-of-likes">{card.likes.length}</p>
         </div>
       </div>
     </li>
