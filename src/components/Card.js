@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function Card({ card, onCardClick, onCardLike }) {
+function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const currentUser = useContext(CurrentUserContext);
   const isOwn = card.owner._id === currentUser._id; // Определяем, являемся ли мы владельцем текущей карточки
   const isLiked = card.likes.some((i) => i._id === currentUser._id); // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
@@ -19,6 +19,10 @@ function Card({ card, onCardClick, onCardLike }) {
     onCardLike(card);
   }
 
+  function handleDeleteClick() {
+    onCardDelete(card);
+  }
+
   return (
     <li className="cards__card">
       <img
@@ -29,7 +33,11 @@ function Card({ card, onCardClick, onCardLike }) {
       />
       {/* используем переменную для условного рендеринга */}
       {isOwn && (
-        <button className="cards__delete button-hover" type="button"></button>
+        <button
+          className="cards__delete button-hover"
+          type="button"
+          onClick={handleDeleteClick}
+        ></button>
       )}
       <div className="cards__description">
         <h2 className="cards__name">{card.name}</h2>
