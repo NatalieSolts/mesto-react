@@ -3,6 +3,7 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
+import EditProfilePopup from "./EditProfilePopup";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -83,39 +84,10 @@ function App() {
         />
         <Footer />
 
-        {/* Попап «Редактировать профиль» */}
-        <PopupWithForm
-          name="edit-profile"
-          title="Редактировать профиль"
-          buttonText="Сохранить"
+        <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-        >
-          <input
-            type="text"
-            defaultValue=""
-            className="popup__input popup__input_type_name"
-            name="name"
-            placeholder="Имя"
-            required=""
-            minLength="2"
-            maxLength="40"
-            id="name"
-          />
-          <span className="popup__error name-error" />
-          <input
-            type="text"
-            defaultValue=""
-            className="popup__input popup__input_type_job"
-            name="job"
-            placeholder="Описание деятельности"
-            required=""
-            minLength="2"
-            maxLength="200"
-            id="job"
-          />
-          <span className="popup__error job-error" />
-        </PopupWithForm>
+        />
 
         {/* Попап добавить «Новое место» */}
         <PopupWithForm
@@ -148,7 +120,6 @@ function App() {
           />
           <span className="popup__error link-error" />
         </PopupWithForm>
-
         {/* Попап подтверждения удаления карточки «Вы уверены?»*/}
         <PopupWithForm
           name="delete-card-confirmation"
@@ -156,7 +127,6 @@ function App() {
           buttonText="Да"
           onClose={closeAllPopups}
         />
-
         {/* Попап «Обновить аватар» */}
         <PopupWithForm
           name="update-avatar"
@@ -176,7 +146,6 @@ function App() {
           />
           <span className="popup__error avatar-error" />
         </PopupWithForm>
-
         {/* Попап увеличить изображение */}
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       </CurrentUserContext.Provider>
