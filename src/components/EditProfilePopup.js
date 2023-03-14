@@ -25,7 +25,6 @@ function EditProfilePopup({ isOpen, onClose }) {
     >
       <input
         type="text"
-        defaultValue=""
         className="popup__input popup__input_type_name"
         name="name"
         placeholder="Имя"
@@ -39,7 +38,6 @@ function EditProfilePopup({ isOpen, onClose }) {
       <span className="popup__error name-error" />
       <input
         type="text"
-        defaultValue=""
         className="popup__input popup__input_type_job"
         name="job"
         placeholder="Описание деятельности"
