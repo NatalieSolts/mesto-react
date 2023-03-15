@@ -2,10 +2,10 @@ import { useState, useEffect, useContext } from "react";
 import PopupWithForm from "./PopupWithForm";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function EditProfilePopup({ isOpen, onClose }) {
+function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   const currentUser = useContext(CurrentUserContext); // Подписка на контекст
-  const [name, setName] = useState(currentUser);
-  const [description, setDescription] = useState(currentUser);
+  const [name, setName] = useState(currentUser.name);
+  const [description, setDescription] = useState(currentUser.about);
 
   // После загрузки текущего пользователя из API
   // его данные будут использованы в управляемых компонентах.
@@ -23,6 +23,17 @@ function EditProfilePopup({ isOpen, onClose }) {
     setDescription(e.target.value);
   }
 
+  function handleSubmit(e) {
+    // Запрещаем браузеру переходить по адресу формы
+    e.preventDefault();
+
+    // Передаём значения управляемых компонентов во внешний обработчик
+    onUpdateUser({
+      name,
+      about: description,
+    });
+  }
+
   return (
     // Попап «Редактировать профиль»
     <PopupWithForm
@@ -31,6 +42,7 @@ function EditProfilePopup({ isOpen, onClose }) {
       buttonText="Сохранить"
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={handleSubmit}
     >
       <input
         type="text"
@@ -41,7 +53,7 @@ function EditProfilePopup({ isOpen, onClose }) {
         minLength="2"
         maxLength="40"
         id="name"
-        value={name}
+        value={name || ""}
         onChange={handleChangeName}
       />
       <span className="popup__error name-error" />
@@ -54,7 +66,7 @@ function EditProfilePopup({ isOpen, onClose }) {
         minLength="2"
         maxLength="200"
         id="job"
-        value={description}
+        value={description || ""}
         onChange={handleChangeDescription}
       />
       <span className="popup__error job-error" />

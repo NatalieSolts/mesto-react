@@ -62,6 +62,16 @@ function App() {
     });
   }
 
+  function handleUpdateUser(userData) {
+    api
+      .sendUserInfo(userData)
+      .then((data) => {
+        setCurrentUser(data);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
+  }
+
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
@@ -87,6 +97,7 @@ function App() {
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser}
         />
 
         {/* Попап добавить «Новое место» */}
