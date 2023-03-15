@@ -73,6 +73,16 @@ function App() {
       .catch((err) => console.log(err));
   }
 
+  function handleUpdateAvatar(userData) {
+    api
+      .updateAvatar(userData)
+      .then((data) => {
+        setCurrentUser(data);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
+  }
+
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
@@ -143,6 +153,7 @@ function App() {
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}
         />
 
         {/* Попап увеличить изображение */}
