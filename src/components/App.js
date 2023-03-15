@@ -4,6 +4,7 @@ import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -139,24 +140,11 @@ function App() {
           onClose={closeAllPopups}
         />
         {/* Попап «Обновить аватар» */}
-        <PopupWithForm
-          name="update-avatar"
-          title="Обновить аватар"
-          buttonText="Сохранить"
-          onClose={closeAllPopups}
+        <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
-        >
-          <input
-            type="url"
-            defaultValue=""
-            className="popup__input popup__input_type_avatar"
-            name="avatar"
-            placeholder="Ссылка на картинку"
-            required=""
-            id="avatar"
-          />
-          <span className="popup__error avatar-error" />
-        </PopupWithForm>
+          onClose={closeAllPopups}
+        />
+
         {/* Попап увеличить изображение */}
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       </CurrentUserContext.Provider>
