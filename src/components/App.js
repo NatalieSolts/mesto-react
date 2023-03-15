@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
+import AddPlacePopup from "./AddPlacePopup";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -110,38 +111,9 @@ function App() {
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
         />
-
         {/* Попап добавить «Новое место» */}
-        <PopupWithForm
-          name="add-place"
-          title="Новое место"
-          buttonText="Создать"
-          isOpen={isAddPlacePopupOpen}
-          onClose={closeAllPopups}
-        >
-          <input
-            type="text"
-            defaultValue=""
-            className="popup__input popup__input_type_card-name"
-            name="name"
-            placeholder="Название"
-            required=""
-            minLength={2}
-            maxLength={30}
-            id="card-name"
-          />
-          <span className="popup__error card-name-error" />
-          <input
-            type="url"
-            defaultValue=""
-            className="popup__input popup__input_type_link"
-            name="link"
-            placeholder="Ссылка на картинку"
-            required=""
-            id="link"
-          />
-          <span className="popup__error link-error" />
-        </PopupWithForm>
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+
         {/* Попап подтверждения удаления карточки «Вы уверены?»*/}
         <PopupWithForm
           name="delete-card-confirmation"
